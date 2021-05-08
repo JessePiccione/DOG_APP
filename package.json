@@ -1,0 +1,15 @@
+{
+  "name": "Dog App",
+  "version": "1.0.0",
+  "description": "App for storing information on dogs",
+  "main": "app.js",
+  "author": "JessePiccione",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.17.1",
+    "express-handlebars": "4.0.1",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1"
+  }
+}
