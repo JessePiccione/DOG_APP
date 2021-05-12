@@ -1,5 +1,5 @@
+const puppeteer = require('puppeteer');
 //node packages 
-
 const express = require("express");
 const exphbs = require("express-handlebars");
 const mysql = require("mysql");
@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 const { urlencoded } = require("body-parser");
 const upload = multer();
+const fetch = require("isomorphic-fetch")
 
 //set up express app
 
@@ -19,21 +20,24 @@ app.engine("handlebars", exphbs({
         json: function(context){
             return JSON.stringify(context);
         }
-    }
+    },
+    defaultLayout:"main"
 }));
-app.set("view engine", "handleBars");
+app.set("view engine", "handlebars");
 app.use(urlencoded({extended: false}))
 
 app.use(express.static("public"))
 
-const info = {
-    "title": "Doggy Data",
-    "search":"Enter or select a dog breed",
-}
+
 app.get("/", function(req, res){
-    var context = {}
+    context = {}
+    res.render('app_home',context)
     
 })
+app.post("/", function(req, res){
+    context = {dbreed:"GSD",dheight:"3 ft",dweight:"88 lbs",dcolor:"red,gray,white,black,brown",dcoat:"double coat",dlitter: "4-9 pups", dlife:"10-13 years"};
+    res.render('dogdisplay', context);
+});
 app.use(function(req,res){
     res.status(404);
     res.render("404", context);
@@ -44,3 +48,6 @@ app.use(function(err,req,res, next){
     var context = {}
     res.render("500", context)
 })
+app.listen(app.get("port"), () => {
+    console.log("Running Express at http://localhost:" + app.get("port") + "\nPress Ctrl-C to terminate...");
+});
