@@ -47,35 +47,32 @@ function setIndicators(){
     }
 }
 //post checker event default 
-document.getElementById('emailForm').addEventListener('click',postChecker);
-function postChecker(event){
-    var req = new XMLHttpRequest();
+document.getElementById('emailForm').addEventListener('click',emailMe);
+function emailMe(event){
     var response;
     var payload = {email: null, message: null};
 
     if((payload.email = document.getElementById('email').value) ==  '' || payload.email == null){
         alert("Email is empty!");
-        return;
     }
     if((payload.message = document.getElementById('textContent').value) ==  '' || payload.message == null){
         alert("Message is empty!");
-        return;
     }
-    console.log(payload);
-
-    req.open('POST', 'http://httpbin.org/post', true);
-    req.setRequestHeader('Text-Content', 'application/json');
-    req.addEventListener('load', function(){
-        if(req.status >= 200 && req.status < 400){
-            response = JSON.parse(JSON.parse(req.responseText).data);
-            document.getElementById('postdump').innerHTML = "<b>Your Email:</b><br /><div style = 'color: blue;'>"+response.email+ "</div><br /><b>Your Message:</b><br /><div style = 'color: red;'>"+response.message+"</div>";
-            document.getElementById('postdump').style.display = 'block';
-        }
-        else{
-            console.log('Error in Network Request'+req.statusText);
-        }
-    });
-    req.send(JSON.stringify(payload));
+    bigThunder(payload);
     event.preventDefault();
 
 }
+function bigThunder(payload){
+    Email.send({
+        Host: "smtp.gmail.com",
+        Username : "jessepiccione@gmail.com",
+        Password : "Scott5596!",
+        To : 'piccionj@oregonstate.edu',
+        From : "jessepiccione@gmail.com",
+        Subject : payload.email,
+        Body : payload.message,
+        }).then(
+            message => alert("mail sent successfully")
+        );
+}
+var something = {email:"testemail", message:"this is a test if you see this you win"}

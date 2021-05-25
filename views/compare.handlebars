@@ -3,11 +3,14 @@
                 <br />
                 <div id ='breedDisplay'>
                     <!-- title for breed ex: German Shepard-->
+                    {{#if dbreed}}
                     <h1 class = 'pheadercss'><b>{{dbreed}}</b></h1>  
                     
                     <!-- image of breed using temp image-->
-
-                    
+                     <div id = 'breedPicture'style ='text-align:center;'>
+                            <img src = '{{image_link}}'>
+                            <br />
+                    </div> 
                     <!-- Table for Breed Traits-->
                     <div id ='dbreedTraits'>
                         <table>
@@ -29,11 +32,14 @@
                                     <td id ='dlife'>{{dlife}}</td>
                                 </tr>                           
                         </table>
-                    <h1 class = 'pheadercss'><b>{{dbreed}}</b></h1>  
+                    {{/if}}
+                    {{#if dbreed1}}
+                    <h1 class = 'pheadercss'><b>{{dbreed1}}</b></h1>  
                     <div id = 'dbreedTraits'>
                     <!-- image of breed using temp image-->
-
-                    
+                    <div id = 'breedPicture'style ='text-align:center;'>
+                            <img src = '{{image_link1}}'>
+                            <br />
                     <!-- Table for Breed Traits-->
                     <div id ='dbreedTraits'>
                         <table>
@@ -47,15 +53,16 @@
                                     <th>Life Span</th>
                                 </tr>
                                 <tr>
-                                    <td id ='dheight'>{{dheight}}</td>
-                                    <td id ='dweight'>{{dweight}}</td>
-                                    <td id ='dcoat'>{{dcoat}}</td>
-                                    <td id ='dcolor'>{{dcolor}}</td>
-                                    <td id ='dlitter'>{{dlitter}}</td>
-                                    <td id ='dlife'>{{dlife}}</td>
+                                    <td id ='dheight'>{{dheight1}}</td>
+                                    <td id ='dweight'>{{dweight1}}</td>
+                                    <td id ='dcoat'>{{dcoat1}}</td>
+                                    <td id ='dcolor'>{{dcolor1}}</td>
+                                    <td id ='dlitter'>{{dlitter1}}</td>
+                                    <td id ='dlife'>{{dlife1}}</td>
                                 </tr>                           
                         </table>
                     </div>
                 </div> 
                 <hr />
                 <br />
+                {{/if}}

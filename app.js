@@ -158,8 +158,34 @@ app.post("/", async function(req, res){
     
     res.render('dogdisplay', context);
 });
-app.get("/compare", function(req, res){
-    context = {dbreed:"German Shepherd",dheight:"60-65 cm (24-26 in)",dweight:"30-40 kg (66-88 lb)",dcolor:"Tan with black saddle, sable, solid black or bi-color",dcoat:"Double coat",dlitter: "4-9", dlife:"9-13"};
+app.get("/compare",  async function(req, res){
+
+    //data for tables
+    dog1 = await scrape(req.query.dog1)
+    dog2 = await scrape(req.query.dog2)
+    //image links 
+    dog1.image_link = (await scrape(req.query.dog1,1)).image_link
+    dog2.image_link = (await scrape(req.query.dog2,1)).image_link
+    context = {
+                dbreed: dog1.dbreed,
+                dheight: dog1.dheight,
+                dweight: dog1.dweight,
+                dcoat: dog1.dcoat,
+                dcolor: dog1.dcolor,
+                dlitter: dog1.dlitter,
+                dlife: dog1.dlife,
+                image_link: dog1.image_link,
+
+                dbreed1: dog2.dbreed,
+                dheight1: dog2.dheight,
+                dweight1: dog2.dweight,
+                dcoat1: dog2.dcoat,
+                dcolor1: dog2.dcolor,
+                dlitter1: dog2.dlitter,
+                dlife1: dog2.dlife,
+                image_link1: dog2.image_link,
+
+                        }
     res.render('compare', context)
 });
 app.post("/scrape", async function(req,res){
