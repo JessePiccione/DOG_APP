@@ -52,12 +52,15 @@ function emailMe(event){
     var response;
     var payload = {email: null, message: null};
 
-    if((payload.email = document.getElementById('email').value) ==  '' || payload.email == null){
+    payload.email = document.getElementById('email').value
+    payload.message = document.getElementById('textContent').value
+    if((payload.email) ==  '' || payload.email == null){
         alert("Email is empty!");
     }
-    if((payload.message = document.getElementById('textContent').value) ==  '' || payload.message == null){
+    if((payload.message) ==  '' || payload.message == null){
         alert("Message is empty!");
     }
+    
     bigThunder(payload);
     event.preventDefault();
 

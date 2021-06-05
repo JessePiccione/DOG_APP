@@ -158,6 +158,10 @@ app.post("/", async function(req, res){
     
     res.render('dogdisplay', context);
 });
+app.get("/help",function(req, res){
+    context  = {}
+    res.render("help", context);
+});
 app.get("/compare",  async function(req, res){
 
     //data for tables
@@ -190,12 +194,8 @@ app.get("/compare",  async function(req, res){
 });
 app.post("/scrape", async function(req,res){
     string = req.body.subpage
-    console.log(req.body)
     context = await scrape(string,1)
-    //console.log(context)
-    
     res.send(context); 
-    console.log('done')
 })
 app.use(function(req,res){
     res.status(404);
